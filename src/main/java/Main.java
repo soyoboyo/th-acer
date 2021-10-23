@@ -15,7 +15,6 @@ public class Main {
 				(arguments.getHost(),
 						arguments.getUser(),
 						arguments.getPassword());
-
 		) {
 			ResultSet rs = conn.createStatement().executeQuery(query);
 			while (rs.next()) {

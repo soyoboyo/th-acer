@@ -33,16 +33,15 @@ public class ArgumentsProcessor {
 	private Map<String, String> mapArguments(String[] args) {
 		Map<String, String> mappedAgs = new HashMap<>();
 		for (String arg : args) {
-			String[] params = arg.split("=");
-			if (params.length != 2) {
-				throw new IllegalArgumentException("Wrong settings for argument: " + arg);
+			if (arg.startsWith("--")) {
+				String[] params = arg.split("=");
+				if (params.length != 2) {
+					throw new IllegalArgumentException("Wrong settings for argument: " + arg);
+				}
+				String name = params[0];
+				String value = params[1];
+				mappedAgs.put(name, value);
 			}
-			String name = params[0];
-			if (!name.startsWith("--")) {
-				throw new IllegalArgumentException("Wrong format for argument: " + args);
-			}
-			String value = params[1];
-			mappedAgs.put(name, value);
 		}
 		return mappedAgs;
 	}
