@@ -5,8 +5,19 @@ Tematem zadania jest narzędzie do eksportu zawartości bazy danych do postaci t
 Aplikacja powinna być uruchamiana w sposób wsadowy (linia komend) i eksportować do formatu CSV dane ze wskazanej bazy danych. Założeniem aplikacji są prostota użytkowania, wysoka reużywalność i konfigurowalność.
 
 Narzędzie przy starcie wymaga podania:
-{ adresu do połączenia z bazą danych, ścieżki do sterownika jdbc, nazwy tabeli, nazw kolumn do eksportu, opcjonalnej paginacji (rozmiar i numer strony)
-lub wykorzystania jednej z wcześnie używanych konfiguracji. } Aplikacja powinna dawać możliwość pracy z różnymi bazami danych (np. Oracle, Postgresql), ale jednocześnie nie być ściśle związana z żadną z nich. Nie powinna zawierać wbudowanego sterownika jdbc. Dane zwracane są na standardowym wyjściu.
+
+```
+{
+    adresu do połączenia z bazą danych, 
+    ścieżki do sterownika jdbc, 
+    nazwy tabeli, 
+    nazw kolumn do eksportu, 
+    opcjonalnej paginacji (rozmiar i numer strony)
+    lub wykorzystania jednej z wcześnie używanych konfiguracji. 
+} 
+```
+
+Aplikacja powinna dawać możliwość pracy z różnymi bazami danych (np. Oracle, Postgresql), ale jednocześnie nie być ściśle związana z żadną z nich. Nie powinna zawierać wbudowanego sterownika jdbc. Dane zwracane są na standardowym wyjściu.
 
 
 ---
@@ -39,3 +50,10 @@ INSERT into INVOICE values (4, 2, 7, 2018);
 INSERT into INVOICE values (5, 2, 8, 2020);
 INSERT into INVOICE values (6, 3, 14, 2020);
 ```
+
+# JDBC download links
+
+https://jdbc.postgresql.org/download.html
+
+
+
