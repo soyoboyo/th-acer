@@ -10,5 +10,4 @@ public class Main {
 		dbService.getData(userArguments);
 	}
 
-
 }

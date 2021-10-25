@@ -3,9 +3,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.charset.Charset;
 import java.time.Instant;
 import java.util.Arrays;
@@ -17,9 +14,9 @@ import java.util.Map;
 public class ArgumentsProcessor {
 
 	public Map<String, String> processAllArguments(String[] args) {
-		List<String> arguments = getArguments(args);
+		List<String> arguments = readArgumentsFrom(args);
 		Map<String, String> mappedArguments = mapArguments(arguments);
-		updateClasspath(mappedArguments.get("--jdbcPath"));
+		JdbcJarLoader.addToClasspath(mappedArguments.get("--jdbcPath"));
 		return mappedArguments;
 	}
 
@@ -40,20 +37,8 @@ public class ArgumentsProcessor {
 		return mappedAgs;
 	}
 
-	private static void updateClasspath(String jarPath) {
-		try {
-			File dbFile = new File(jarPath);
-			URL path = dbFile.toURI().toURL();
-			URLClassLoader cl = (URLClassLoader) ClassLoader.getSystemClassLoader();
-			Method m = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
-			m.setAccessible(true);
-			m.invoke(cl, new Object[]{path});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	public static List<String> getArguments(String[] args) {
+	public static List<String> readArgumentsFrom(String[] args) {
 		if (args.length == 1) {
 			return getArgumentsFromFile(args);
 		}

@@ -1,17 +1,21 @@
 import lombok.Getter;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Getter
 public class UserArguments {
 
 
-	private String host;
-	private String user;
-	private String password;
-	private String jdbcPath;
-	private String tableName;
-	private String columns;
+	private final String host;
+	private final String jdbcPath;
+	private final String user;
+	private final String password;
+	private final String tableName;
+	private final String columns;
+	private String pageSize;
+	private String pageNumber;
+
 
 	public UserArguments(Map<String, String> mappedArguments) {
 		host = mappedArguments.get("--host");
@@ -20,8 +24,12 @@ public class UserArguments {
 		jdbcPath = mappedArguments.get("--jdbcPath");
 		tableName = mappedArguments.get("--tableName");
 		columns = mappedArguments.get("--columns");
-		String pageSize = mappedArguments.get("--pageSize");
-		String pageNumber = mappedArguments.get("--pageNumber");
+		pageSize = mappedArguments.get("--pageSize");
+		pageNumber = mappedArguments.get("--pageNumber");
+	}
+
+	public boolean hasPagnation() {
+		return !(Objects.isNull(pageSize) || Objects.isNull(pageNumber));
 	}
 
 }
