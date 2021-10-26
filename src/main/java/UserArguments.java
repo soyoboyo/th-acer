@@ -1,7 +1,6 @@
 import lombok.Getter;
 
 import java.util.Map;
-import java.util.Objects;
 
 @Getter
 public class UserArguments {
@@ -13,8 +12,8 @@ public class UserArguments {
 	private final String password;
 	private final String tableName;
 	private final String columns;
-	private String pageSize;
-	private String pageNumber;
+	private Integer pageSize;
+	private Integer pageNumber;
 
 
 	public UserArguments(Map<String, String> mappedArguments) {
@@ -24,12 +23,15 @@ public class UserArguments {
 		jdbcPath = mappedArguments.get("--jdbcPath");
 		tableName = mappedArguments.get("--tableName");
 		columns = mappedArguments.get("--columns");
-		pageSize = mappedArguments.get("--pageSize");
-		pageNumber = mappedArguments.get("--pageNumber");
+		if (mappedArguments.get("--pageSize") != null && mappedArguments.get("--pageNumber") != null) {
+			pageSize = Integer.parseInt(mappedArguments.get("--pageSize"));
+			pageNumber = Integer.parseInt(mappedArguments.get("--pageNumber"));
+		}
+
 	}
 
-	public boolean hasPagnation() {
-		return !(Objects.isNull(pageSize) || Objects.isNull(pageNumber));
+	public boolean hasPagination() {
+		return pageSize != null && pageNumber != null;
 	}
 
 }

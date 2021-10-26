@@ -75,6 +75,4 @@ Problems:
     * wrong credentials -> throw exception
 * table doesn't exist -> throw exception (maybe show existing table names)
 * column/s doesn't exist -> throw exception (maybe check if all requested columns exist, because exception only shows first missing column)
-* previous configuration file not found 
-
-
+* previous configuration file not found
